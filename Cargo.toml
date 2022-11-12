@@ -4,20 +4,20 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-base64 = "0.13.0"
+base64 = "0.13.1"
 wireguard-uapi = "2.0.5"
-thiserror = "1.0.32"
+thiserror = "1.0.37"
 toml = "0.5.9"
-native-tls = "0.2.10"
+native-tls = "0.2.11"
 
 [dependencies.ldap3]
 version = "0.10.5"
 features = ["gssapi"]
 
 [dependencies.serde]
-version = "1.0.142"
+version = "1.0.147"
 features = ["derive"]
 
 [dependencies.url]
-version = "2.2.2"
+version = "2.3.1"
 features = ["serde"]
