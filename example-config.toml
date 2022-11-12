@@ -1,0 +1,8 @@
+[wireguard]
+device_name = "wg0"
+remove_extra_peers = true
+match_listen_port_to_local_endpoint = true
+
+[ldap]
+url = "ldap://example.org"
+base_dn = "ou=wireguard,dc=example,dc=org"

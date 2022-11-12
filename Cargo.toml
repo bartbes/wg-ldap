@@ -2,3 +2,22 @@
 name = "wg-ldap"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+base64 = "0.13.0"
+wireguard-uapi = "2.0.5"
+thiserror = "1.0.32"
+toml = "0.5.9"
+native-tls = "0.2.10"
+
+[dependencies.ldap3]
+version = "0.10.5"
+features = ["gssapi"]
+
+[dependencies.serde]
+version = "1.0.142"
+features = ["derive"]
+
+[dependencies.url]
+version = "2.2.2"
+features = ["serde"]
