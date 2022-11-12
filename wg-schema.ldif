@@ -1,0 +1,9 @@
+dn: cn=wireguard,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: wireguard
+olcAttributeTypes: ( 1.3.6.1.3.9999.1.1 NAME 'wgPublicKey' EQUALITY octetStringMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 SINGLE-VALUE )
+olcAttributeTypes: ( 1.3.6.1.3.9999.1.2 NAME 'wgPresharedKey' EQUALITY octetStringMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.40 SINGLE-VALUE )
+olcAttributeTypes: ( 1.3.6.1.3.9999.1.3 NAME 'wgAllowedIp' EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: ( 1.3.6.1.3.9999.1.4 NAME 'wgEndpoint' EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: ( 1.3.6.1.3.9999.1.5 NAME 'wgPersistentKeepalive' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcObjectClasses:  ( 1.3.6.1.3.9999.2.1 NAME 'wgPeer' SUP top AUXILIARY MUST ( wgPublicKey $ wgAllowedIp ) MAY ( wgPresharedKey $ wgEndpoint $ wgPersistentKeepalive ) )

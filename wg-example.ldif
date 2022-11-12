@@ -1,0 +1,19 @@
+dn: ou=wireguard,dc=example,dc=org
+objectClass: organizationalUnit
+
+dn: cn=server1,ou=wireguard,dc=example,dc=org
+objectClass: device
+objectClass: wgPeer
+cn: server1
+wgPublicKey:: Gw8MkQ4pOIOhAsEFbyCRIGdBF2MJLT1fwtcDDwwoO3g=
+wgAllowedIp: 10.99.0.2/24
+wgAllowedIp: 10.99.1.2/24
+wgEndpoint: 127.0.0.9:1234
+
+dn: cn=server2,ou=wireguard,dc=example,dc=org
+objectClass: device
+objectClass: wgPeer
+cn: server2
+wgPublicKey:: povKUEliETJYlWuzTPdA2Jv22oICSSei5yZzmj+J5Ss=
+wgAllowedIp: 10.99.0.1/24
+wgEndpoint: 127.0.0.1:1234
