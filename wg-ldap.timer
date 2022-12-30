@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh configuration for wireguard interface from LDAP
+ConditionFileNotEmpty=/etc/wireguard/wg-ldap.toml
+After=network-online.target
+
+[Timer]
+OnUnitActiveSec=5
+OnCalendar=hourly
+Persistent=false
+
+[Install]
+WantedBy=multi-user.target

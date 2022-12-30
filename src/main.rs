@@ -84,7 +84,8 @@ fn connect_to_ldap(config: &LdapConfig) -> Result<LdapConn, Box<dyn std::error::
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let config = std::fs::read_to_string("config.toml")?;
+    let config = std::env::args().nth(1).unwrap_or("config.toml".into());
+    let config = std::fs::read_to_string(config)?;
     let config: Config = toml::from_str(&config)?;
 
     let mut ldap_conn = connect_to_ldap(&config.ldap)?;

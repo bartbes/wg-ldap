@@ -1,0 +1,11 @@
+[Unit]
+Description=Configure wireguard interface from LDAP
+ConditionFileNotEmpty=/etc/wireguard/wg-ldap.toml
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=wg-ldap /etc/wireguard/wg-ldap.toml
+
+[Install]
+WantedBy=multi-user.target
