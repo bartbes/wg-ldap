@@ -9,6 +9,7 @@ use crate::ldap::get_peers;
 use crate::peer::WgPeer;
 use ldap3::{LdapConn, LdapConnSettings};
 use wireguard_uapi::{DeviceInterface, WgSocket};
+use base64::engine::Engine;
 
 #[derive(Debug, Default)]
 struct ClassifiedPeers<'a> {
@@ -92,6 +93,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut wg = WgSocket::connect()?;
     let interface = DeviceInterface::from_name(&config.wireguard.device_name);
     let get_device = wg.get_device(interface)?;
+    let b64 = base64::engine::general_purpose::STANDARD;
 
     let peers = get_peers(&mut ldap_conn, &config.ldap)?;
     let peers = classify(&get_device, peers);
@@ -105,7 +107,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for peer in &peers.new_peers {
         println!(
             "Found new peer with public key {}",
-            base64::encode(&peer.public_key)
+            b64.encode(&peer.public_key)
         );
         new_peer_list.push(peer.into());
         update_interface = true;
@@ -114,7 +116,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for peer in &peers.matched_peers {
         println!(
             "Found existing peer with public key {}",
-            base64::encode(&peer.public_key)
+            b64.encode(&peer.public_key)
         );
         new_peer_list.push(peer.into());
     }
@@ -122,7 +124,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for peer in &peers.missing_peers {
         println!(
             "Missing peer with public key {}",
-            base64::encode(&peer.public_key)
+            b64.encode(&peer.public_key)
         );
     }
 
